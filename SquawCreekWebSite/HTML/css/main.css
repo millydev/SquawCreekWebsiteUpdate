@@ -1,0 +1,155 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/* Nav background */
+.navbar.bg-faded {
+    background-color: #fff;}
+/* Logo background */           
+.logo-bg-col{background-color:#000080;}
+/* Logo background */           
+.title-bg-col{background-color:#272727;}
+/* Footer color */
+footer{background-color:#000080;}
+.footer-twxt{ color:#fff;}
+/* Footer space */
+.footer-space{margin-top:18px;}
+.imgcen{     display: block;
+    margin: auto;
+   width:auto ;}
+.ctnter{ margin: 0 auto 0 auto;}
+.txtcenter {text-align: center;}
+
+/* Space between rows */
+.spacer1{margin-bottom:15px;}
+.spacer2{margin-top:12.5px;}
+.spacer3{margin-top:18.5px;}
+
+/* about link background col */
+.aboutlink{ background-color:#b6f2ff;}
+
+/* Icons on Home page*/
+.hpicon1{ display:block; width:175px; height:175;}
+
+/* Header designs* */ 
+h2{text-align:left; font-size:16px; color:#000;}
+h3{text-align:right; color:#0C0; text-transform:uppercase;}
+h4{ margin-left:auto; margin-right:auto; text-transform:uppercase; font-size:14px; color:#000;}
+h6 { color: #fff; font-size: 70px; text-transform: uppercase; text-align:center; margin:0;}
+h7 { color: #fff; font-size: 35px; text-transform: uppercase; text-align:center; margin:0;}
+h5 { color: #666; font-size: 25px; text-transform: uppercase; text-align:center; margin:0;}
+
+/* Main logo click */
+a.logolink:link {color: #fff; text-decoration: none;}
+a.logolink:visited  {color: #fff;text-decoration: none;}
+a.logolink:hover  { color: #fff; text-decoration: none;}
+a.logolink:active {color: #fff;text-decoration: none;}
+
+/*styling and navigation bar enhacement*/
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+/*Slideshow*/
+* {
+    margin:0;
+    padding:0;
+}
+.firstPageImageSlide
+{
+	position: relative;
+	width:100%;
+	height:528px;
+	overflow:hidden;
+	background: #000080;
+}
+
+#slideshow img
+{
+    height:75%;
+    width:100%;
+}
+#pager
+{
+    text-align:center;
+    height:120px;
+    width:100%;
+    position:absolute;
+    bottom:20px;
+    background:rgba(0,0,0,5);
+    z-index:1000;
+    opacity:0;
+    transition:all 0.3s ease-in-out 0s;
+   
+}
+#pager:hover
+{
+    opacity:1;
+}
+#prev {
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    top: calc(50% - 60px);
+    left: 0;
+    margin: auto 10px;
+    z-index: 1000;
+	cursor: pointer;
+}
+#next
+{
+    height:120px;
+    width:120px;
+    position:absolute;
+    top: calc(50% - 60px);
+    right:0;
+    margin:auto 10px;
+    z-index:1000;
+	cursor: pointer;
+}
+#pager img
+{
+    margin:10px 5px;
+    opacity:0.3;
+    transition:all .3s ease-in-out 0s;
+}
+#pager img:hover
+{
+    opacity:1;
+    transform:scale(1.05);
+    z-index:100;
+}
+
+/* Right align Checkout on Shop Page*/
+.right {
+    float: right;
+    width: 300px;
+	
+}.rightadress {
+    float: right;
+	}
+	
+/*Second Title */
+.title {
+    float: right;
+    width: 10%;
+	}
+
+div.main {
+	padding: 5px;
+}
