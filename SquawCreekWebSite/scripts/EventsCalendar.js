@@ -18,57 +18,9 @@ $(document).ready(function () {
 	calendar.theme = "calendar_default";
 	calendar.viewType = "Week";
 
-	// Move an event
-	calendar.onEventMoved = function (args) {
-		$.ajax({
-			type: 'POST',
-			url: uri,
-			data: '{action:"move", id:"' + args.e.id() + '", start:"' + args.newStart.toString() + '", end:"' + args.newEnd.toString() + '" }',
-			success: function (data) { },
-			contentType: "application/json",
-			dataType: 'json'
-		});
-	};
-
-	// Resize an event
-	calendar.onEventResized = function (args) {
-		$.ajax({
-			type: 'POST',
-			url: uri,
-			data: '{action:"move", id:"' + args.e.id() + '", start:"' + args.newStart.toString() + '", end:"' + args.newEnd.toString() + '" }',
-			success: function (data) { },
-			contentType: "application/json",
-			dataType: 'json'
-		});
-	};
-
-	// Create an event
-	calendar.onTimeRangeSelected = function (args) {
-		var name = prompt("New event name:", "Event");
-		calendar.clearSelection();
-		if (!name) return;
-
-		$.ajax({
-			type: 'POST',
-			url: uri,
-			data: '{action:"create", text:"' + name + '", start:"' + args.start.toString() + '", end:"' + args.end.toString() + '" }',
-			success: function (data) {
-				var e = new DayPilot.Event({
-					start: args.start,
-					end: args.end,
-					id: data.id,
-					text: name
-				});
-				calendar.events.add(e);
-			},
-			contentType: "application/json",
-			dataType: 'json'
-		});
-	};
-
 	// Show an event
 	calendar.onEventClick = function (args) {
-		alert("clicked: " + args.e.id());
+		alert("Event Text: " + args.e.text() + "\nStart Date/Time:" + args.e.start().value + "\nEnd Date/Time:" + args.e.end().value);
 	};
 
 	calendar.init();

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Http;
 using SquawCreekWebSite.DB;
 using SquawCreekWebSite.Models;
+using System.Web;
 
 namespace SquawCreekWebSite.Controllers
 {
@@ -51,19 +52,18 @@ namespace SquawCreekWebSite.Controllers
         /// <returns></returns>
         public IHttpActionResult PostEvents(EventFilter ev)
         {
-          /*  if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }*/
-
             switch (ev.action)
             {
                 case "create":
-                    return Ok(CreateEvent(ev.text, ev.start, ev.end));
+                    if (HttpContext.Current.Request.Cookies["sqkwebsite"] != null)
+                        return Ok(CreateEvent(ev.text, ev.start, ev.end));
+                    return Ok(-1);
                 case "move":
-                    return Ok(UpdateEvent(ev.id, ev.start, ev.end));
+                    if (HttpContext.Current.Request.Cookies["sqkwebsite"] != null)
+                        return Ok(UpdateEvent(ev.id, ev.start, ev.end));
+                    return Ok(-1);
                 case "filter":
-                    return Ok(FilterEvents(ev.text, ev.start, ev.end).ToList());
+                    return Ok(FilterEventsByDate(ev.start, ev.end).ToList());
                 default:
                     return Ok(-1);
             }
@@ -75,7 +75,7 @@ namespace SquawCreekWebSite.Controllers
         /// <param name="text">The text of the event</param>
         /// <param name="start">The event start date</param>
         /// <param name="end">The event end date</param>
-        /// <returns></returns>
+        /// <returns></returns>       
         private Event CreateEvent(string text, DateTime start, DateTime end)
         {
             Event ev = new Event(-1, text, start, end);
@@ -97,20 +97,15 @@ namespace SquawCreekWebSite.Controllers
         }
 
         /// <summary>
-        /// Used to filter the events based based on non empty string parameters
-        /// </summary>
-        /// <param name="text">The text of the event</param>
+        /// Used to filter the events based based on th start and end dates
+        /// 
         /// <param name="start">The event start date</param>
         /// <param name="end">The event end date</param>>
         /// <returns></returns>
-        private IEnumerable<Event> FilterEvents(string text, DateTime start, DateTime end)
+        private IEnumerable<Event> FilterEventsByDate( DateTime start, DateTime end)
         {
-            events = (new EventsDB()).SelectAll();
-            var e = events.Where(p => (text.Equals(string.Empty)? true : p.text == text) 
-                                    && (start.Equals(string.Empty) ? true : p.start >= start)
-                                    && (end.Equals(string.Empty) ? true : p.end <= end)
-                                );
-            return e;
+            events = (new EventsDB()).SelectEventsByDates(start, end);
+            return events;
         }
 
         /*

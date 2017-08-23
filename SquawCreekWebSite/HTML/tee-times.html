@@ -8,6 +8,8 @@
     <script src="../scripts/libs/jquery-3.2.1.min.js"></script>
     <script src="../scripts/libs/tether.min.js"></script>
     <script src="../scripts/libs/bootstrap.min.js"></script>
+    <script src="../scripts/libs/daypilot-all.min.js"></script>
+    <script src="../scripts/TeeTimesLogin.js"></script>
 </head>
 <body>
 
@@ -53,10 +55,18 @@
 
     <div class="col-12 title-bg-col txtcenter"> <h7>  Tee times  </h7> </div>
 
-    <div class="col-12 col-md-auto">
-        </br></br></br></br></br></br></br></br>
+    <div class="alert alert-danger text-center hide" role="alert" id="loginFailed">User / Password not valid</div>
 
+    <!--Log In-->
+    <div class="wrapper">
+        <form class="form-signin" id="signIn">
+            <h2 class="form-signin-heading">Please login</h2>
+            <input type="text" class="form-control" name="username" placeholder="User" required="" autofocus="" />
+            <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </form>
     </div>
+
     <!--Footer-->
     <footer>
         <div class="col-12 ctnter"><img class="imgcen" src="img/squaw-footer.png" width="114" height="75" /></div>

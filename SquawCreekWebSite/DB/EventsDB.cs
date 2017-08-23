@@ -47,6 +47,43 @@ namespace SquawCreekWebSite.DB
             }
         }
 
+        public List<Models.Event> SelectEventsByDates(DateTime start, DateTime end)
+        {
+            string query = "SELECT * FROM calendarevents where startDate >= @startDate and endDate <= @endDate";
+
+            //Create a list to store the result
+            List<Event> list = new List<Event>();
+
+            //Open connection
+            if (this.OpenDBConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, dbConnection);
+                    cmd.Parameters.AddWithValue("@startDate", start);
+                    cmd.Parameters.AddWithValue("@endDate", end);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        list.Add(new Event((int)dataReader["calendarEventsId"], (string)dataReader["eventName"], (DateTime)dataReader["startDate"], (DateTime)dataReader["endDate"]));
+                    }
+                    dataReader.Close();
+
+                    this.CloseDBConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    return list;
+                }
+
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
         public long InsertEvent(Event ev)
         {
             long newID = -1;
