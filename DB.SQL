@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS squawcreek.vendors;
 DROP TABLE IF EXISTS squawcreek.products;
 DROP TABLE IF EXISTS squawcreek.orderDetails;
 DROP TABLE IF EXISTS squawcreek.calendarEvents;
+DROP TABLE IF EXISTS squawcreek.users;
 
 --------------------------------------------------------
 -- Create Tables
@@ -196,7 +197,17 @@ CREATE TABLE IF NOT EXISTS squawcreek.orderDetails(
 -- Create Table Calendar Events
 CREATE TABLE IF NOT EXISTS squawcreek.calendarEvents(
   calendarEventsId INT(15) NOT NULL AUTO_INCREMENT,
-  eventName VARCHAR(200) NULL,
-  startDate DATETIME NULL,
-  endDate DATETIME NULL,
+  eventName VARCHAR(200) NOT NULL,
+  startDate DATETIME NOT NULL,
+  endDate DATETIME NOT NULL,
   PRIMARY KEY (calendarEventsId));
+  
+ -- Create Table Users
+CREATE TABLE IF NOT EXISTS squawcreek.users(
+  userID INT(15) NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  PRIMARY KEY (userID));
+  
+  -- Insert the Administrator user: admin, Pa$$w0rd
+insert into squawcreek.users (userName, password) values ('admin', SHA1('Pa$$w0rd'));
